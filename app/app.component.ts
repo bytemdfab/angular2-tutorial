@@ -11,15 +11,18 @@ interface Hero {
     <h1>{{title}}</h1>
     <h2>My heroes</h2>
     <ul class="heroes">
-    	<li *ngFor="#hero of heroes">
+    	<li *ngFor="#hero of heroes" 
+    		(click)="onSelect(hero)"
+    		[class.selected] = "hero === selectedHero">
     		<span class="badge">{{hero.id}}</span> {{hero.name}}
     	</li>
     </ul>
-    <h2>{{hero.name}} details!</h2>
-    <div><label>id: </label>{{hero.id}}</div>
-    <div>
-    	<label>name: </label>
-    	<div><input [(ngModel)]="hero.name" placeholder="name" /></div>
+    <div *ngIf="selectedHero"><h2>{{selectedHero.name}} details!</h2>
+        <div><label>id: </label>{{selectedHero.id}}</div>
+        <div>
+        	<label>name: </label>
+        	<div><input [(ngModel)]="selectedHero.name" placeholder="name" /></div>
+        </div>
     </div>
     `,
     styles:[`
@@ -75,11 +78,12 @@ interface Hero {
 export class AppComponent { 
 
 	public title = 'Tour of heroes';
-	public hero: Hero = {
-		id: 1,
-		name: 'Windstorm'
-	};
+	public selectedHero: Hero;
 	public heroes = HEROES;
+
+	onSelect(hero: Hero) {
+		this.selectedHero = hero;
+	}
 
 }
 
