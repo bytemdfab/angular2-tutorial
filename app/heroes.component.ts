@@ -8,7 +8,6 @@ import {HeroService} from './hero.service';
 @Component({
     selector: 'my-heroes',
     template: `
-    <h1>{{title}}</h1>
     <h2>My heroes</h2>
     <ul class="heroes">
     	<li *ngFor="#hero of heroes" 
@@ -67,8 +66,7 @@ import {HeroService} from './hero.service';
       border-radius: 4px 0px 0px 4px;
     }
   `],
-  directives: [HeroDetailComponent],
-  providers: [HeroService]
+  directives: [HeroDetailComponent]
 
 })
 export class HeroesComponent implements OnInit { 
