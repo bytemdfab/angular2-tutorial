@@ -6,6 +6,6 @@ import {Hero} from './hero';
 
 export class HeroService {
 	getHeroes() {
-		return HEROES;
+		return Promise.resolve(HEROES);
 	}
 }
